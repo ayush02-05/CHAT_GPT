@@ -2,6 +2,7 @@ const { Server } = require("socket.io");
 const cookie = require("cookie");
 const jwt = require("jsonwebtoken");
 const UserModel = require("../models/user.model");
+const VectorService = require("../Services/vector.service");
 const aiService = require("../Services/ai.service");
 const messageModel = require("../models/message.model");
 
@@ -30,12 +31,26 @@ function initSocketServer(httpServer) {
   io.on("connection", (socket) => {
     socket.on("ai-message", async (data) => {
       const message = typeof data === "string" ? JSON.parse(data) : data;
-
       if (!message?.content || typeof message.content !== "string") {
         console.error("Invalid message payload : ", message);
         return;
       }
 
+      // user message convert into vector
+      const userVector = await aiService.generateVectors(message.content);
+
+      // saving vector to Pincone
+      const UvectorDB = await VectorService.createMemory({
+        vector: userVector,
+        messageID: message.chat,
+        metadata: {
+          user: socket.user._id,
+          chat: message.chat,
+          text: message.content,
+        },
+      });
+
+      // user message saved in DB
       const userMessage = await messageModel.create({
         user: socket.user._id,
         chat: message.chat,
@@ -43,8 +58,42 @@ function initSocketServer(httpServer) {
         role: "user",
       });
 
-      const response = await aiService.generateResponse(message.content);
+      // Chathistory
+      const chatHistory = (
+        await messageModel
+          .find({
+            chat: message.chat,
+          })
+          .sort({ createdAt: -1 })
+          .limit(4)
+          .lean()
+      ).reverse();
 
+      // Short term memory
+      const stm = chatHistory.map((item) => {
+        return {
+          role: item.role,
+          parts: [{ text: item.content }],
+        };
+      });
+
+      // response is generating
+      const response = await aiService.generateResponse([...stm]);
+
+      // response converting into vector
+      const responseVector = await aiService.generateVectors(response);
+
+      const RvectorDB = await VectorService.createMemory({
+        vector: responseVector,
+        messageID: message.chat,
+        metadata: {
+          user: socket.user._id,
+          chat: message.chat,
+          text: response,
+        },
+      });
+
+      // response message saved in DB
       const responseMessage = await messageModel.create({
         user: socket.user._id,
         chat: message.chat,
