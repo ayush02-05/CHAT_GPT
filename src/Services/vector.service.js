@@ -16,7 +16,7 @@ async function createMemory({ vector, messageID, metadata }) {
   ]);
 }
 
-async function queryMemory({ queryVector, limit = 5, metadata }) {
+async function queryMemory({ queryVector, limit, metadata }) {
   const data = await chatgptIndex.query({
     vector: queryVector,
     topK: limit,
