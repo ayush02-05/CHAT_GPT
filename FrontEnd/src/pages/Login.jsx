@@ -42,7 +42,7 @@ export default function Login() {
           <div className="auth-header">
             <div className="logo-icon"></div>
             <h1>Welcome Back</h1>
-            <p>Access the Aayu.. neural engine</p>
+            <p>Access the ThinkAI neural engine</p>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="auth-form">
@@ -87,7 +87,7 @@ export default function Login() {
           </div>
 
           <p className="auth-footer">
-            New to Aayu.?{" "}
+            New to <i>ThinkAI</i> ?{" "}
             <button onClick={() => navigate("/signup")}>Create Account</button>
           </p>
         </div>
