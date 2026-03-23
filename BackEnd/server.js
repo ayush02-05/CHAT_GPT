@@ -9,6 +9,6 @@ const initSocketServer = require("./src/Socket/Socket.server");
 ConnectTODB();
 initSocketServer(httpServer);
 
-httpServer.listen("5000", (req, res) => {
-  console.log("server is now running on port 5000✅");
+httpServer.listen("3000", (req, res) => {
+  console.log("server is now running on port 3000✅");
 });

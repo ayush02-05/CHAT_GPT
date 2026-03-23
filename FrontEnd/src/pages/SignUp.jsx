@@ -26,11 +26,11 @@ export default function SignUp({ onNavigate, onSignUp }) {
     if (!data) return;
     try {
       const res = await axios.post(
-        "https://chat-gpt-a3cn.onrender.com/user/register",
+        "http://localhost:3000/user/register",
         data,
         {
           withCredentials: true,
-        }
+        },
       );
       if (res.status == 200) {
         toast.success("SingUp Successfully");

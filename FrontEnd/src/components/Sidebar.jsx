@@ -18,9 +18,9 @@ export default function Sidebar({
     if (title !== "") {
       try {
         const response = await axios.post(
-          "https://chat-gpt-a3cn.onrender.com/chat",
+          "http://localhost:3000/chat",
           { title },
-          { withCredentials: true }
+          { withCredentials: true },
         );
         const newChat = {
           _id: response.data.chat._id,
@@ -41,9 +41,9 @@ export default function Sidebar({
   const handlelogout = async () => {
     try {
       await axios.post(
-        "https://chat-gpt-a3cn.onrender.com/user/logout",
+        "http://localhost:3000/user/logout",
         {},
-        { withCredentials: true }
+        { withCredentials: true },
       );
       setActiveChatId(null);
       setchatList([]);

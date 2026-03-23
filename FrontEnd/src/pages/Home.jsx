@@ -32,20 +32,21 @@ export default function Home() {
   useEffect(() => {
     async function fetchdata() {
       try {
-        await axios
+        const res = await axios
           .get("https://chat-gpt-a3cn.onrender.com/chat", {
             withCredentials: true,
           })
           .then((response) => {
-            setchatList(response.data.chat);
+            // setchatList(response.data.chat);
+            console.log(response);
           });
       } catch (error) {
-        console.log(error);
+        console.log(error, error.response.data.message);
       }
     }
     fetchdata();
 
-    const tempdata = io("https://chat-gpt-a3cn.onrender.com", {
+    const tempdata = io("http://localhost:3000", {
       withCredentials: true,
       transports: ["websocket"], // ✅ render friendly
     });
@@ -67,15 +68,16 @@ export default function Home() {
     if (!chatID) return;
     try {
       const response = await axios.get(
-        `https://chat-gpt-a3cn.onrender.com/chat/messages/${chatID}`,
-        { withCredentials: true }
+        `http://localhost:3000/chat/messages/${chatID}`,
+        { withCredentials: true },
       );
+      console.log(response);
 
       setMessages(
         response.data.messages.map((item) => ({
           role: item.role,
           text: item.content,
-        }))
+        })),
       );
     } catch (error) {
       console.error(error);
@@ -117,8 +119,8 @@ export default function Home() {
               <div
                 className={`px-4 py-2 rounded-xl max-w-[75%] text-sm shadow ${
                   msg.role === "user"
-                    ? "bg-gradient-to-r from-[#25232D] to-[#15121A]"
-                    : "bg-gradient-to-b from-[#252525] to-[#181818]"
+                    ? "bg-linear-to-r from-[#25232D] to-[#15121A]"
+                    : "bg-linear-to-b from-[#252525] to-[#181818]"
                 }`}
               >
                 {msg.text}
@@ -127,7 +129,7 @@ export default function Home() {
           ))}
           {isLoading && (
             <div className="flex justify-start">
-              <div className="px-4 py-2 rounded-xl bg-gradient-to-b from-[#252525] to-[#181818] text-sm shadow">
+              <div className="px-4 py-2 rounded-xl bg-linear-to-b from-[#252525] to-[#181818] text-sm shadow">
                 <span className="typing-dots">
                   <span>.</span>
                   <span>.</span>

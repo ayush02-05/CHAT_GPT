@@ -21,7 +21,7 @@ app.use("/user", UserRoute);
 app.use("/chat", ChatRoute);
 
 //
-app.get("*name", (req, res) => {
+app.get("/name", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
