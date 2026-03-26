@@ -18,7 +18,7 @@ export default function Sidebar({
     if (title !== "") {
       try {
         const response = await axios.post(
-          "https://chat-gpt-whdb.onrender.com/chat",
+          "https://backend-7xj5.onrender.com/chat",
           { title },
           { withCredentials: true },
         );
@@ -41,7 +41,7 @@ export default function Sidebar({
   const handlelogout = async () => {
     try {
       await axios.post(
-        "https://chat-gpt-whdb.onrender.com/user/logout",
+        "https://backend-7xj5.onrender.com/user/logout",
         {},
         { withCredentials: true },
       );

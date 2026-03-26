@@ -9,7 +9,7 @@ const messageModel = require("../models/message.model");
 function initSocketServer(httpServer) {
   const io = new Server(httpServer, {
     cors: {
-      origin: "https://chat-gpt-whdb.onrender.com",
+      origin: "https://backend-7xj5.onrender.com",
       credentials: true,
     },
   });

@@ -21,7 +21,7 @@ export default function Login() {
     if (!data) return;
     try {
       const response = await axios
-        .post("https://chat-gpt-whdb.onrender.com/user/login", data, {
+        .post("https://backend-7xj5.onrender.com/user/login", data, {
           withCredentials: true,
         })
         .then((response) => {
