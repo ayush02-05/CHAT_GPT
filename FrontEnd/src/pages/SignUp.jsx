@@ -26,7 +26,7 @@ export default function SignUp({ onNavigate, onSignUp }) {
     if (!data) return;
     try {
       const res = await axios.post(
-        "https://chat-gpt-ryzn.onrender.com/user/register",
+        "https://chat-gpt-whdb.onrender.com/user/register",
         data,
         {
           withCredentials: true,

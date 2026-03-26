@@ -33,7 +33,7 @@ export default function Home() {
     async function fetchdata() {
       try {
         const res = await axios
-          .get("https://chat-gpt-a3cn.onrender.com/chat", {
+          .get("https://chat-gpt-whdb.onrender.com/chat", {
             withCredentials: true,
           })
           .then((response) => {
@@ -46,7 +46,7 @@ export default function Home() {
     }
     fetchdata();
 
-    const tempdata = io("https://chat-gpt-ryzn.onrender.com", {
+    const tempdata = io("https://chat-gpt-whdb.onrender.com", {
       withCredentials: true,
       transports: ["websocket"], // ✅ render friendly
     });
@@ -68,7 +68,7 @@ export default function Home() {
     if (!chatID) return;
     try {
       const response = await axios.get(
-        `https://chat-gpt-ryzn.onrender.com/chat/messages/${chatID}`,
+        `https://chat-gpt-whdb.onrender.com/chat/messages/${chatID}`,
         { withCredentials: true },
       );
       console.log(response);

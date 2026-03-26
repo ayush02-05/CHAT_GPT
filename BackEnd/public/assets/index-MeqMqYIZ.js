@@ -19182,7 +19182,7 @@ function oS() {
       if (f)
         try {
           (
-            await Zt.post("https://chat-gpt-ryzn.onrender.com/user/login", f, {
+            await Zt.post("https://chat-gpt-whdb.onrender.com/user/login", f, {
               withCredentials: !0,
             })
           ).status == 200 &&
@@ -19317,7 +19317,7 @@ function cS({ onNavigate: a, onSignUp: i }) {
         try {
           (
             await Zt.post(
-              "https://chat-gpt-ryzn.onrender.com/user/register",
+              "https://chat-gpt-whdb.onrender.com/user/register",
               m,
               {
                 withCredentials: !0,
@@ -19482,7 +19482,7 @@ function fS({
       if (v !== "")
         try {
           const b = await Zt.post(
-              "https://chat-gpt-ryzn.onrender.com/chat",
+              "https://chat-gpt-whdb.onrender.com/chat",
               { title: v },
               { withCredentials: !0 },
             ),
@@ -19496,7 +19496,7 @@ function fS({
     p = async () => {
       try {
         (await Zt.post(
-          "https://chat-gpt-ryzn.onrender.com/user/logout",
+          "https://chat-gpt-whdb.onrender.com/user/logout",
           {},
           { withCredentials: !0 },
         ),
@@ -21951,7 +21951,7 @@ function fT() {
     D.useEffect(() => {
       async function B() {
         try {
-          await Zt.get("https://chat-gpt-ryzn.onrender.com/chat", {
+          await Zt.get("https://chat-gpt-whdb.onrender.com/chat", {
             withCredentials: !0,
           }).then((C) => {
             d(C.data.chat);
@@ -21961,7 +21961,7 @@ function fT() {
         }
       }
       B();
-      const A = jr("https://chat-gpt-ryzn.onrender.com", {
+      const A = jr("https://chat-gpt-whdb.onrender.com", {
         withCredentials: !0,
         transports: ["websocket"],
       });
@@ -21980,7 +21980,7 @@ function fT() {
     if (B)
       try {
         const A = await Zt.get(
-          `https://chat-gpt-ryzn.onrender.com/chat/messages/${B}`,
+          `https://chat-gpt-whdb.onrender.com/chat/messages/${B}`,
           {
             withCredentials: !0,
           },
