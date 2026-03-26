@@ -10,6 +10,6 @@ const initSocketServer = require("./src/Socket/Socket.server");
 ConnectTODB();
 initSocketServer(httpServer);
 
-httpServer.listen(process.env.PORT, (req, res) => {
-  res.send(`server is now running on port ${process.env.PORT}✅`);
+httpServer.listen(process.env.PORT, () => {
+  console.log(`server is now running on port ${process.env.PORT}✅`);
 });
