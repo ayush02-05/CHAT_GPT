@@ -20,15 +20,17 @@ export default function Login() {
   const onSubmit = async (data) => {
     if (!data) return;
     try {
-      const response = await axios
-        .post("https://backend-7xj5.onrender.com/user/login", data, {
+      const response = await axios.post(
+        "https://backend-7xj5.onrender.com/user/login",
+        data,
+        {
           withCredentials: true,
-        })
-        .then((response) => {
-          console.log(response);
-          toast.success(response.data.message);
-          navigate("/home");
-        });
+        },
+      );
+
+      console.log(response);
+      toast.success(response.data.message);
+      navigate("/home");
     } catch (error) {
       toast.error(error.response.data.message);
       console.log(error);

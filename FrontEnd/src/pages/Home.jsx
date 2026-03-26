@@ -32,14 +32,15 @@ export default function Home() {
   useEffect(() => {
     async function fetchdata() {
       try {
-        const res = await axios
-          .get("https://backend-7xj5.onrender.com/chat", {
+        const response = await axios.get(
+          "https://backend-7xj5.onrender.com/chat",
+          {
             withCredentials: true,
-          })
-          .then((response) => {
-            // setchatList(response.data.chat);
-            console.log(response);
-          });
+          },
+        );
+
+        setchatList(response.data.chat);
+        console.log(response);
       } catch (error) {
         console.log(error, error.response.data.message);
       }

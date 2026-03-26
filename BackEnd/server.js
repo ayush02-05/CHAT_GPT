@@ -11,5 +11,5 @@ ConnectTODB();
 initSocketServer(httpServer);
 
 httpServer.listen(process.env.PORT, (req, res) => {
-  console.log(`server is now running on port ${process.env.PORT}✅`);
+  res.send(`server is now running on port ${process.env.PORT}✅`);
 });
