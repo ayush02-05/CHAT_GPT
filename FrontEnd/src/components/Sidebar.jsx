@@ -18,7 +18,7 @@ export default function Sidebar({
     if (title !== "") {
       try {
         const response = await axios.post(
-          "http://localhost:3000/chat",
+          "https://chat-gpt-ryzn.onrender.com/chat",
           { title },
           { withCredentials: true },
         );
@@ -41,7 +41,7 @@ export default function Sidebar({
   const handlelogout = async () => {
     try {
       await axios.post(
-        "http://localhost:3000/user/logout",
+        "https://chat-gpt-ryzn.onrender.com/user/logout",
         {},
         { withCredentials: true },
       );

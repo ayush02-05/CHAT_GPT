@@ -19182,7 +19182,7 @@ function oS() {
       if (f)
         try {
           (
-            await Zt.post("http://localhost:3000/user/login", f, {
+            await Zt.post("https://chat-gpt-ryzn.onrender.com/user/login", f, {
               withCredentials: !0,
             })
           ).status == 200 &&
@@ -19316,9 +19316,13 @@ function cS({ onNavigate: a, onSignUp: i }) {
       if (m)
         try {
           (
-            await Zt.post("http://localhost:3000/user/register", m, {
-              withCredentials: !0,
-            })
+            await Zt.post(
+              "https://chat-gpt-ryzn.onrender.com/user/register",
+              m,
+              {
+                withCredentials: !0,
+              },
+            )
           ).status == 200 && (Ut.success("SingUp Successfully"), s("/home"));
         } catch (g) {
           (Ut.error(g.response.data.message), console.log(g));
@@ -19478,7 +19482,7 @@ function fS({
       if (v !== "")
         try {
           const b = await Zt.post(
-              "http://localhost:3000/chat",
+              "https://chat-gpt-ryzn.onrender.com/chat",
               { title: v },
               { withCredentials: !0 },
             ),
@@ -19492,7 +19496,7 @@ function fS({
     p = async () => {
       try {
         (await Zt.post(
-          "http://localhost:3000/user/logout",
+          "https://chat-gpt-ryzn.onrender.com/user/logout",
           {},
           { withCredentials: !0 },
         ),
@@ -21947,7 +21951,7 @@ function fT() {
     D.useEffect(() => {
       async function B() {
         try {
-          await Zt.get("http://localhost:3000/chat", {
+          await Zt.get("https://chat-gpt-ryzn.onrender.com/chat", {
             withCredentials: !0,
           }).then((C) => {
             d(C.data.chat);
@@ -21957,7 +21961,7 @@ function fT() {
         }
       }
       B();
-      const A = jr("http://localhost:3000", {
+      const A = jr("https://chat-gpt-ryzn.onrender.com", {
         withCredentials: !0,
         transports: ["websocket"],
       });
@@ -21975,9 +21979,12 @@ function fT() {
   const z = async (B) => {
     if (B)
       try {
-        const A = await Zt.get(`http://localhost:3000/chat/messages/${B}`, {
-          withCredentials: !0,
-        });
+        const A = await Zt.get(
+          `https://chat-gpt-ryzn.onrender.com/chat/messages/${B}`,
+          {
+            withCredentials: !0,
+          },
+        );
         i(A.data.messages.map((C) => ({ role: C.role, text: C.content })));
       } catch (A) {
         console.error(A);

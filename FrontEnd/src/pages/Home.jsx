@@ -46,7 +46,7 @@ export default function Home() {
     }
     fetchdata();
 
-    const tempdata = io("http://localhost:3000", {
+    const tempdata = io("https://chat-gpt-ryzn.onrender.com", {
       withCredentials: true,
       transports: ["websocket"], // ✅ render friendly
     });
@@ -68,7 +68,7 @@ export default function Home() {
     if (!chatID) return;
     try {
       const response = await axios.get(
-        `http://localhost:3000/chat/messages/${chatID}`,
+        `https://chat-gpt-ryzn.onrender.com/chat/messages/${chatID}`,
         { withCredentials: true },
       );
       console.log(response);

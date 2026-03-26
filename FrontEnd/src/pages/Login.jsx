@@ -21,7 +21,7 @@ export default function Login() {
     if (!data) return;
     try {
       const response = await axios
-        .post("http://localhost:3000/user/login", data, {
+        .post("https://chat-gpt-ryzn.onrender.com/user/login", data, {
           withCredentials: true,
         })
         .then((response) => {
